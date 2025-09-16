@@ -1,7 +1,6 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
-// UDTs
 typedef struct Contact_data
 {
     char Name[32];
@@ -15,7 +14,7 @@ typedef struct AddressBook_Data
     int contact_count;
 } AddressBook;
 
-// Function declarations 
+// Function declarations
 
 // Functionalities [main.c]
 void init_intitalization(AddressBook *);
@@ -27,12 +26,17 @@ int delete_contact(AddressBook *);
 int save_contacts(AddressBook *);
 
 // Sub-Functions [contact.c]
-void print_contact_details(AddressBook *, int );
-int search_by_name(AddressBook *);
+void print_contact_details(AddressBook *, int, int);
+int search_by_name(int check, AddressBook *);
 int search_by_mobile_no(AddressBook *);
 int search_by_mail(AddressBook *);
 void delete_shift(AddressBook *, int);
 void print_line(void);
+
+//Validations [Validations.c]
+char *name_validation(char *name);
+char *mobile_no_validation(int check, char *mobile_no,AddressBook *addressbook);
+char *mail_id_validation(int check, char *mail_id, AddressBook *addressbook);
 
 #endif // CONTACT_H
        // CONTACT_H

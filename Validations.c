@@ -136,20 +136,41 @@ char *mail_id_validation(int check, char *mail_id, AddressBook *addressbook)
             continue;
         }
                     
-        if( (strchr(mail_id,'@')+1 == strstr(mail_id,".com")) || //Domin should be present
+        if( (strchr(mail_id,'@')+1 == strstr(mail_id,".com")) || //Domin name should be present
             (strchr(mail_id,'@')+1 == strstr(mail_id,".in")) )
         {
             printf("\033[1;31mDomain name should be present after @ symbol! Try again.\033[0m\n");
             continue;
         }
 
-        int i=0;
-        while(mail_id[i])  //should contain only lowercase, '@' and (.)
+        int i = 0;
+        while(mail_id[i])
         {
-            if((islower(mail_id[i])) || mail_id[i] == '@' || mail_id[i] == '.' ) i++;
+            if(mail_id[i] == '@')
+            {
+                i++;
+                break;
+            }
+            i++;
+        }
+        while(mail_id[i])  //Domain name should not have numbers
+        {
+            if(isdigit(mail_id[i])) 
+            {
+                printf("\033[1;31mDomain name should not have numbers! Try again.\033[0m\n");
+                break;
+            }
+            i++;
+        }
+        if(mail_id[i] != '\0') continue;
+
+        i=0;
+        while(mail_id[i])  //should contain only lowercase, numbers, '@' and (.)
+        {
+            if((islower(mail_id[i])) || mail_id[i] == '@' || mail_id[i] == '.' || isdigit(mail_id[i])) i++;
             else 
             {
-                printf("\033[1;31mMail Id should only contain '@' symbol, full stop (.), and lowercase letters! Try again.\033[0m\n");
+                printf("\033[1;31mMail Id should only contain '@' symbol, full stop (.), numbers and lowercase letters! Try again.\033[0m\n");
                 break;
             }
         }

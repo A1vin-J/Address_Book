@@ -8,14 +8,14 @@ int main()
     int option;
     AddressBook addressbook;
     addressbook.contact_count = 0;
-
-    // init_intitalization(&addressbook);
-
+    
+    init_intitalization(&addressbook);
+    
     while (1)
     {
-        printf("\nAddress book menu\n"); /* Give a prompt message for a user */
-        printf("1.Add contact\n2.search contact\n3.Edit contact\n4.Delete contact\n5.List contact\n6.Save contact\n7.Exit\n");
-        printf("Enter the option : ");
+        printf("\n\033[1;36mAddress book menu\033[0m\n"); /* Give a prompt message for a user */
+        printf("1.Add contact\n2.Search contact\n3.Edit contact\n4.Delete contact\n5.List contact\n6.Save contacts\n7.Save and Exit\n8.Exit without saving\n");
+        printf("\nEnter the option : ");
         scanf("%d%*c", &option);
 
         switch (option) /* Based on choosed option */
@@ -50,12 +50,17 @@ int main()
         }
 
         case 6:
-            printf("Saving contacts\n");
+            printf("\033[1;32mContacts have been saved successfully!\033[0mn");
             save_contacts(&addressbook);
             break;
 
         case 7:
-            printf("INFO : Save and Exit...\n");
+            printf("Saving and Exiting...\n");
+            save_contacts(&addressbook);
+            return 0;
+
+        case 8:
+            printf("Exiting without saving...\n");
             return 0;
 
         default:

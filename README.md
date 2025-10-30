@@ -54,7 +54,7 @@ This will generate the executable file `a.out`.
 ### Run the Program
 
 ```bash
-./address_book
+./a.out
 ```
 
 ### Sample Interaction
